@@ -1,0 +1,25 @@
+@use '../utility/' as u;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: thick solid #ffcee8;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #ffcee8, 0 0 15px #ff9cd1, 0 0 20px #ff9cd1,
+    0 0 40px #fe6bbb, inset 0 0 5px #ffcee8, inset 0 0 15px #ff9cd1,
+    inset 0 0 20px #ff9cd1, inset 0 0 40px #fe6bbb;
+  width: 300px;
+  margin: 0 auto;
+  padding-top: 15px;
+  text-align: center;
+
+  &__title {
+    font-family: u.$fontNeon;
+    font-size: 4.2rem;
+    color: #ffcee8;
+    text-shadow: 0 0 5px #ffcee8, 0 0 15px #ff9cd1, 0 0 20px #ff9cd1,
+      0 0 40px #fe6bbb, 0 0 60px #fe6bbb, 0 0 80px var(--darkPink),
+      0 0 98px var(--darkPink);
+  }
+}
