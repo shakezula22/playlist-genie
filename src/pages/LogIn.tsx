@@ -1,8 +1,10 @@
+import { BASE_URL, SPOTIFY_CLIENT_ID } from '../types';
+
 export default function LogInPage() {
-  const clientId = '08547b47e3a9425992a780af5276909b';
-  const redirectUri = 'http://localhost:5174/';
+  const clientId = SPOTIFY_CLIENT_ID;
+  const redirectUri = `${BASE_URL}/callback`;
   const scopes =
-    'playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public';
+    'playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-read-private user-read-email';
 
   function generateRandomString(length: number): string {
     let text = '';
@@ -57,10 +59,11 @@ export default function LogInPage() {
       window.location.assign('https://accounts.spotify.com/authorize?' + args);
     });
   };
+
   return (
-    <div>
-      <div className="card">
-        <h1 className="card__title">
+    <div className="page">
+      <div className="card neon-pink">
+        <h1 className="card__title neon-pink__text">
           Playlist<br></br> Genie
         </h1>
       </div>
