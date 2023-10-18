@@ -1,7 +1,6 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { BASE_URL, SPOTIFY_CLIENT_ID } from '../types';
-import { UserContext } from '../context/user-context';
 
 export default function AuthCallbackPage() {
   const [searchParams] = useSearchParams();
@@ -38,25 +37,17 @@ export default function AuthCallbackPage() {
       localStorage.setItem('user', JSON.stringify(user));
     };
 
-    const response = fetch('https://accounts.spotify.com/api/token', {
+    fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: body,
     })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('HTTP status ' + response.status);
-        }
-        return response.json();
-      })
+      .then(res => res.json())
       .then(data => {
         localStorage.setItem('access_token', data.access_token);
         getProfile(data.access_token);
-      })
-      .catch(error => {
-        console.error('Error:', error);
       });
 
     navigate('/');

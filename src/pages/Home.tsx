@@ -9,8 +9,8 @@ export default function HomePage() {
         <h1>Hi {user?.name}!</h1>
       </header>
       <div className="container">
-        <div className="container__card">
-          <h2 className="container__card-h2">Custom Playlist</h2>
+        <div className="card neon-purple">
+          <h2>Custom Playlist</h2>
           <p>Create a new playlist from a variety of options.</p>
           <button>Let's Go!</button>
         </div>

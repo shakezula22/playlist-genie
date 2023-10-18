@@ -1,6 +1,5 @@
 .neon-pink {
   border: thick solid #ffcee8;
-
   box-shadow: 0 0 5px #ffcee8, 0 0 15px #ff9cd1, 0 0 20px #ff9cd1,
     0 0 40px #fe6bbb, inset 0 0 5px #ffcee8, inset 0 0 15px #ff9cd1,
     inset 0 0 20px #ff9cd1, inset 0 0 40px #fe6bbb;
@@ -11,4 +10,11 @@
       0 0 40px #fe6bbb, 0 0 60px #fe6bbb, 0 0 80px var(--darkPink),
       0 0 98px var(--darkPink);
   }
+}
+
+.neon-purple {
+  border: thick solid #d3ace8;
+  box-shadow: 0 0 5px #d3ace8, 0 0 15px #b574d9, 0 0 20px #983dca,
+    0 0 40px var(--darkPurple), inset 0 0 5px #d3ace8, inset 0 0 15px #b574d9,
+    inset 0 0 20px #983dca, inset 0 0 40px var(--darkPurple);
 }
