@@ -9,7 +9,8 @@ export type User = {
 
 export type AuthContext = {
   user: User | null;
-  setUser: (user: User) => void;
-  token: string;
-  setToken: (token: string) => void;
+  token: string | null;
+  persistUser: (user: User) => void;
+  persistToken: (token: string) => void;
+  logOut: () => void;
 };

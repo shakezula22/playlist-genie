@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import HomePage from './pages/Home';
 import ErrorPage from './pages/Error';
 import LogInPage from './pages/LogIn';
+import CustomPlaylistPage from './pages/CustomPlaylist';
 import AuthCallbackPage from './pages/AuthCallback';
 import { AuthProvider } from './context/user-context';
 
@@ -19,6 +20,10 @@ function App() {
     {
       path: '/callback',
       element: <AuthCallbackPage />,
+    },
+    {
+      path: '/customplaylist',
+      element: <CustomPlaylistPage />,
     },
   ]);
 

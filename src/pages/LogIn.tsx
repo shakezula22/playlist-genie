@@ -67,8 +67,8 @@ export default function LogInPage() {
           Playlist<br></br> Genie
         </h1>
       </div>
-      <div className="btn-container">
-        <button onClick={handleClick} className="btn-container__btn">
+      <div className="container">
+        <button onClick={handleClick} className="button">
           Play On!
         </button>
       </div>

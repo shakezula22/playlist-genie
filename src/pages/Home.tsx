@@ -1,18 +1,24 @@
 import { useContext } from 'react';
 import { UserContext } from '../context/user-context';
+import { Link } from 'react-router-dom';
 
 export default function HomePage() {
-  const { user } = useContext(UserContext);
+  const { user, logOut } = useContext(UserContext);
   return (
-    <div className="page">
-      <header>
-        <h1>Hi {user?.name}!</h1>
+    <div>
+      <header className="header">
+        <h1 className="header__title">Hi {user?.name}!</h1>
+        <button className="header__btn" onClick={logOut}>
+          Logout
+        </button>
       </header>
       <div className="container">
         <div className="card neon-purple">
           <h2>Custom Playlist</h2>
           <p>Create a new playlist from a variety of options.</p>
-          <button>Let's Go!</button>
+          <Link to="/customplaylist" className="button">
+            Let's Go!
+          </Link>
         </div>
       </div>
     </div>

@@ -6,37 +6,35 @@ type AuthProviderProps = {
 };
 
 export const UserContext = createContext({} as AuthContext);
+const localToken = localStorage.getItem('access_token');
+const localUser = localStorage.getItem('user');
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState('');
+  const [user, setUser] = useState<User | null>(
+    localUser ? JSON.parse(localUser) : null
+  );
+  const [token, setToken] = useState(localToken);
 
-  useEffect(() => {
-    const localToken = localStorage.getItem('access_token');
-    const localUser = localStorage.getItem('user');
+  const logOut = () => localStorage.clear();
 
-    if (localToken) {
-      setToken(localToken);
-    } else {
-      setToken('');
-    }
+  const persistUser = (user: User) => {
+    setUser(user);
+    localStorage.setItem('user', JSON.stringify(user));
+  };
 
-    if (localUser) {
-      setUser(JSON.parse(localUser));
-    } else {
-      setUser(null);
-    }
-  }, []);
-
-  console.log(user);
+  const persistToken = (token: string) => {
+    setToken(token);
+    localStorage.setItem('access_token', token);
+  };
 
   return (
     <UserContext.Provider
       value={{
         user,
-        setUser,
         token,
-        setToken,
+        persistUser,
+        persistToken,
+        logOut,
       }}
     >
       {children}

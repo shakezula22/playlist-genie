@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { BASE_URL, SPOTIFY_CLIENT_ID } from '../types';
+import { UserContext } from '../context/user-context';
 
 export default function AuthCallbackPage() {
   const [searchParams] = useSearchParams();
+  const { persistUser, persistToken } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,6 +28,7 @@ export default function AuthCallbackPage() {
           Authorization: 'Bearer ' + accessToken,
         },
       });
+      if (!res.ok) return;
 
       const data = await res.json();
       const user = {
@@ -34,7 +37,7 @@ export default function AuthCallbackPage() {
         country: data.country,
       };
 
-      localStorage.setItem('user', JSON.stringify(user));
+      persistUser(user);
     };
 
     fetch('https://accounts.spotify.com/api/token', {
@@ -44,13 +47,16 @@ export default function AuthCallbackPage() {
       },
       body: body,
     })
-      .then(res => res.json())
-      .then(data => {
-        localStorage.setItem('access_token', data.access_token);
-        getProfile(data.access_token);
+      .then(res => {
+        if (!res.ok) return null;
+        return res.json();
+      })
+      .then(async data => {
+        if (data === null) return;
+        persistToken(data.access_token);
+        await getProfile(data.access_token);
+        navigate('/');
       });
-
-    navigate('/');
   }, [searchParams]);
 
   return <div></div>;
