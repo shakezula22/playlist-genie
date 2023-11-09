@@ -3,6 +3,7 @@ import HomePage from './pages/Home';
 import ErrorPage from './pages/Error';
 import LogInPage from './pages/LogIn';
 import CustomPlaylistPage from './pages/CustomPlaylist';
+import CreatePlaylistPage from './pages/CreatePlaylist';
 import AuthCallbackPage from './pages/AuthCallback';
 import { AuthProvider } from './context/user-context';
 
@@ -14,16 +15,17 @@ function App() {
       errorElement: <ErrorPage />,
     },
     {
-      path: '/login',
+      path: 'login',
       element: <LogInPage />,
     },
     {
-      path: '/callback',
+      path: 'callback',
       element: <AuthCallbackPage />,
     },
     {
-      path: '/customplaylist',
+      path: 'customplaylist',
       element: <CustomPlaylistPage />,
+      children: [{ path: 'creatplaylist', element: <CreatePlaylistPage /> }],
     },
   ]);
 

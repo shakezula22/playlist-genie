@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function HomePage() {
   const { user, logOut } = useContext(UserContext);
   return (
-    <div>
+    <div className="page">
       <header className="header">
         <h1 className="header__title">Hi {user?.name}!</h1>
         <button className="header__btn" onClick={logOut}>

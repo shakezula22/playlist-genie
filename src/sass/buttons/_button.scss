@@ -17,4 +17,8 @@
   &:active {
     top: 0.1em;
   }
+
+  &:disabled {
+    display: none;
+  }
 }

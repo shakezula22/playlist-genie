@@ -1,0 +1,10 @@
+.slider {
+  padding: 0.4rem;
+  &__range {
+    display: flex;
+    justify-content: space-between;
+  }
+  &p {
+    margin: 0;
+  }
+}

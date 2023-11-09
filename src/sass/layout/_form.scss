@@ -1,0 +1,35 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.3rem;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.slider {
+  margin-bottom: 1.3rem;
+  & p {
+    margin-bottom: 0;
+  }
+  &__range {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.tempo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+
+  &__input {
+    display: flex;
+
+    & h2 {
+      margin-top: 0;
+    }
+  }
+}
