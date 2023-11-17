@@ -6,32 +6,39 @@ import CustomPlaylistPage from './pages/CustomPlaylist';
 import CreatePlaylistPage from './pages/CreatePlaylist';
 import AuthCallbackPage from './pages/AuthCallback';
 import { AuthProvider } from './context/user-context';
+import PlaylistProvider from './context/playlist-context';
 
 function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <HomePage />,
-      errorElement: <ErrorPage />,
-    },
-    {
-      path: 'login',
       element: <LogInPage />,
     },
     {
-      path: 'callback',
+      path: '/dashboard',
+      element: <HomePage />,
+      errorElement: <ErrorPage />,
+    },
+
+    {
+      path: '/callback',
       element: <AuthCallbackPage />,
     },
     {
-      path: 'customplaylist',
+      path: '/customplaylist',
       element: <CustomPlaylistPage />,
-      children: [{ path: 'creatplaylist', element: <CreatePlaylistPage /> }],
+    },
+    {
+      path: '/createplaylist',
+      element: <CreatePlaylistPage />,
     },
   ]);
 
   return (
     <AuthProvider>
-      <RouterProvider router={router} />
+      <PlaylistProvider>
+        <RouterProvider router={router} />
+      </PlaylistProvider>
     </AuthProvider>
   );
 }

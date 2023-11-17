@@ -1,9 +1,12 @@
 import { useContext } from 'react';
 import { UserContext } from '../context/user-context';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 export default function HomePage() {
   const { user, logOut } = useContext(UserContext);
+  if (!user) {
+    return <Navigate to="/" replace={true} />;
+  }
   return (
     <div className="page">
       <header className="header">

@@ -5,10 +5,15 @@ type PlayProviderProps = {
   children: React.ReactNode;
 };
 export const PlaylistContext = createContext({} as PlayContext);
+let newPlaylist = {
+  name: '',
+  public: true,
+  description: '',
+};
 
 export default function PlaylistProvider({ children }: PlayProviderProps) {
   const [tracks, setTracks] = useState<trackObject[] | null>(null);
-  const [playlist, setPlaylist] = useState<PlaylistBody | null>(null);
+  const [playlist, setPlaylist] = useState<PlaylistBody>(newPlaylist);
 
   const removeSong = (id: string) => {
     if (!tracks) return;

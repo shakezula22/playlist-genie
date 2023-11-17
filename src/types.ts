@@ -18,8 +18,10 @@ export type PlaylistBody = {
 export type AuthContext = {
   user: User | null;
   token: string | null;
+  refresh: string | null;
   persistUser: (user: User) => void;
   persistToken: (token: string) => void;
+  persistRefresh: (token: string) => void;
   logOut: () => void;
 };
 
@@ -27,8 +29,8 @@ export type PlayContext = {
   tracks: trackObject[] | null;
   setTracks: React.Dispatch<React.SetStateAction<trackObject[] | null>>;
   removeSong: (id: string) => void;
-  playlist: PlaylistBody | null;
-  setPlaylist: React.Dispatch<React.SetStateAction<PlaylistBody | null>>;
+  playlist: PlaylistBody;
+  setPlaylist: React.Dispatch<React.SetStateAction<PlaylistBody>>;
 };
 
 export type SpotifyObject = {

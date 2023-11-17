@@ -61,7 +61,7 @@ export default function LogInPage() {
   };
 
   return (
-    <div className="page">
+    <div className="page login">
       <div className="card neon-pink">
         <h1 className="card__title neon-pink__text">
           Playlist<br></br> Genie

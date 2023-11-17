@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import { SpotifyObject } from '../types';
 import { UserContext } from '../context/user-context';
 import { PlaylistContext } from '../context/playlist-context';
+import { Link } from 'react-router-dom';
 
 export default function Submit(props: SpotifyObject) {
   const { user, token } = useContext(UserContext);
@@ -38,15 +39,24 @@ export default function Submit(props: SpotifyObject) {
     ...(props.tempo !== '' && { target_tempo: props.tempo }),
   });
 
+  const handleSubmit = async () => {
+    const res = await fetch(
+      'https://api.spotify.com/v1/recommendations?' + args,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      }
+    );
+    if (!res.ok) return;
+
+    const data = await res.json();
+    setTracks(data.tracks);
+  };
+
   useEffect(() => {
-    fetch('https://api.spotify.com/v1/recommendations?' + args, {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + token,
-      },
-    })
-      .then(res => res.json())
-      .then(data => setTracks(data.tracks));
+    handleSubmit();
   }, []);
 
   return (
@@ -58,7 +68,9 @@ export default function Submit(props: SpotifyObject) {
             <p>{item.artists[0].name}</p>
           </div>
         ))}
-      <button className="button">Create New Playlist</button>
+      <Link className="button" to="/createplaylist">
+        Create New Playlist
+      </Link>
     </div>
   );
 }

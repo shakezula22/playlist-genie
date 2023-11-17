@@ -6,7 +6,7 @@ export default function ErrorPage() {
       <div className="page__center">
         <h1>Oops!</h1>
         <p>An unexpected error has occured.</p>
-        <Link to="/">Return Home</Link>
+        <Link to="/dashboard">Return Home</Link>
       </div>
     </div>
   );
