@@ -1,6 +1,7 @@
 import React from 'react';
-// 'https://playlist-genie-one.vercel.app'
-export const BASE_URL = 'http://localhost:5174';
+('http://localhost:5174');
+
+export const BASE_URL = 'https://playlist-genie-one.vercel.app';
 export const SPOTIFY_CLIENT_ID = '08547b47e3a9425992a780af5276909b';
 
 export type User = {
@@ -22,6 +23,7 @@ export type AuthContext = {
   persistUser: (user: User) => void;
   persistToken: (token: string) => void;
   persistRefresh: (token: string) => void;
+  getRefreshedTokens: () => void;
   logOut: () => void;
 };
 

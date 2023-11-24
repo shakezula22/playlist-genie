@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { AuthContext, User } from '../types';
+import { AuthContext, SPOTIFY_CLIENT_ID, User } from '../types';
 
 type AuthProviderProps = {
   children: React.ReactNode;
@@ -36,6 +36,30 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     localStorage.setItem('refresh_token', token);
   };
 
+  const getRefreshedTokens = async () => {
+    if (!refresh) return;
+
+    const res = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        grant_type: 'refresh_token',
+        refresh_token: refresh,
+        client_id: SPOTIFY_CLIENT_ID,
+      }),
+    });
+
+    if (res.status === 401) {
+      console.log('Login Expired');
+    }
+
+    const data = await res.json();
+    persistRefresh(data.refresh_token);
+    persistToken(data.access_token);
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -45,6 +69,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         persistUser,
         persistToken,
         persistRefresh,
+        getRefreshedTokens,
         logOut,
       }}
     >
