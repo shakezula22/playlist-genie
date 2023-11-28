@@ -3,6 +3,7 @@ import { SpotifyObject } from '../types';
 import { UserContext } from '../context/user-context';
 import { PlaylistContext } from '../context/playlist-context';
 import { Link } from 'react-router-dom';
+import SongItem from './Songs';
 
 export default function Submit(props: SpotifyObject) {
   const { user, token } = useContext(UserContext);
@@ -61,13 +62,9 @@ export default function Submit(props: SpotifyObject) {
 
   return (
     <div className="card">
-      {tracks &&
-        tracks.map(item => (
-          <div key={item.id}>
-            <p>{item.name}</p>
-            <p>{item.artists[0].name}</p>
-          </div>
-        ))}
+      <ul className="tracks">
+        {tracks && tracks.map(item => <SongItem {...item} />)}
+      </ul>
       <Link className="button" to="/createplaylist">
         Create New Playlist
       </Link>

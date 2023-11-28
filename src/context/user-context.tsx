@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     localStorage.setItem('refresh_token', token);
   };
 
-  const getRefreshedTokens = async () => {
+  const getRefreshedTokens = async (): Promise<void> => {
     if (!refresh) return;
 
     const res = await fetch('https://accounts.spotify.com/api/token', {

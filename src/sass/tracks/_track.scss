@@ -1,0 +1,19 @@
+.tracks {
+  width: 100%;
+  color: var(--darkTeal);
+  padding: 5px;
+  font-size: large;
+  list-style: none;
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+    border-bottom: 1px solid var(--darkPurple);
+  }
+
+  &__btn {
+    background: none;
+    border: none;
+  }
+}

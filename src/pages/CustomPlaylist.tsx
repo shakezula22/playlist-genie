@@ -1,6 +1,6 @@
 import { Link, Navigate } from 'react-router-dom';
 import Form from '../components/Form';
-import { IconHome, IconLetterX } from '@tabler/icons-react';
+import { IconHome, IconX } from '@tabler/icons-react';
 import { UserContext } from '../context/user-context';
 import { useContext } from 'react';
 
@@ -19,7 +19,7 @@ export default function CustomPlaylistPage() {
             <IconHome color="pink" />
           </Link>
           <button onClick={logOut} className="header__btn">
-            <IconLetterX color="pink" />
+            <IconX color="pink" />
           </button>
         </div>
       </header>

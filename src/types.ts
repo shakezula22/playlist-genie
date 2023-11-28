@@ -1,7 +1,8 @@
 import React from 'react';
-('http://localhost:5174');
+// 'http://localhost:5174'
+// 'https://playlist-genie-one.vercel.app'
 
-export const BASE_URL = 'https://playlist-genie-one.vercel.app';
+export const BASE_URL = 'http://localhost:5174';
 export const SPOTIFY_CLIENT_ID = '08547b47e3a9425992a780af5276909b';
 
 export type User = {
@@ -9,6 +10,8 @@ export type User = {
   name: string;
   country: string;
 };
+
+export type CallSpotify = (arg: any) => void;
 
 export type PlaylistBody = {
   name: string;
@@ -23,7 +26,7 @@ export type AuthContext = {
   persistUser: (user: User) => void;
   persistToken: (token: string) => void;
   persistRefresh: (token: string) => void;
-  getRefreshedTokens: () => void;
+  getRefreshedTokens: () => Promise<void>;
   logOut: () => void;
 };
 
@@ -50,6 +53,15 @@ export type SpotifyObject = {
 export type OptionsProps = {
   setTunables: React.Dispatch<React.SetStateAction<SpotifyObject>>;
 } & SpotifyObject;
+
+export type ModalActionProps = {
+  modal: boolean;
+  closeModal: () => void;
+};
+
+export type PlaylistFormProps = {
+  openModal: () => void;
+};
 
 export type trackObject = {
   album: {

@@ -1,13 +1,14 @@
 import { TextInput, Textarea, Checkbox } from '@mantine/core';
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../../context/user-context';
-import { PlaylistBody } from '../../types';
+import { PlaylistBody, PlaylistFormProps } from '../../types';
 import { PlaylistContext } from '../../context/playlist-context';
 
-export function PlaylistForm() {
-  const { user, token } = useContext(UserContext);
+export function PlaylistForm({ openModal }: PlaylistFormProps) {
+  const { user, token, getRefreshedTokens } = useContext(UserContext);
   const { setPlaylist, tracks, playlist } = useContext(PlaylistContext);
+  const [needAuth, setNeedAuth] = useState(false);
 
   const trackUris = tracks?.flatMap(item => item.uri);
 
@@ -36,12 +37,24 @@ export function PlaylistForm() {
     );
 
     const data = await res.json();
-    fillPlaylist(data.id);
+    if (res.status === 401) {
+      setNeedAuth(true);
+      return;
+    } else {
+      fillPlaylist(data.id);
+      openModal();
+      setNeedAuth(false);
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    createNewPlaylist(playlist);
+    await createNewPlaylist(playlist);
+
+    if (needAuth == true) {
+      await getRefreshedTokens();
+      await createNewPlaylist(playlist);
+    }
   };
 
   return (
