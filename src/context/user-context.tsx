@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { AuthContext, SPOTIFY_CLIENT_ID, User } from '../types';
+import { AuthContext, User } from '../types';
 
 type AuthProviderProps = {
   children: React.ReactNode;
@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       body: new URLSearchParams({
         grant_type: 'refresh_token',
         refresh_token: refresh,
-        client_id: SPOTIFY_CLIENT_ID,
+        client_id: import.meta.env.VITE_SPOTIFY_CLIENT_ID,
       }),
     });
 

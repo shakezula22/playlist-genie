@@ -1,7 +1,6 @@
-import { BASE_URL, SPOTIFY_CLIENT_ID } from '../types';
+import { BASE_URL } from '../types';
 
 export default function LogInPage() {
-  const clientId = SPOTIFY_CLIENT_ID;
   const redirectUri = `${BASE_URL}/callback`;
   const scopes =
     'playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-read-private user-read-email';
@@ -48,7 +47,7 @@ export default function LogInPage() {
 
       let args = new URLSearchParams({
         response_type: 'code',
-        client_id: clientId,
+        client_id: import.meta.env.VITE_SPOTIFY_CLIENT_ID,
         scope: scopes,
         redirect_uri: redirectUri,
         state: state,
@@ -59,7 +58,6 @@ export default function LogInPage() {
       window.location.assign('https://accounts.spotify.com/authorize?' + args);
     });
   };
-
   return (
     <div className="page login">
       <div className="card neon-pink">

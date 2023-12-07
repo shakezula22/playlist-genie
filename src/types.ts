@@ -1,8 +1,7 @@
 import React from 'react';
 
-export const BASE_URL = import.meta.env.VITE_BASE_URL || 'BASE_URL';
-export const SPOTIFY_CLIENT_ID =
-  import.meta.env.SPOTIFY_CLIENT_ID || 'SPOTIFY_CLIENT_ID';
+export const BASE_URL = import.meta.env.VITE_BASE_URL;
+export const SPOTIFY_CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 
 export type User = {
   id: string;
