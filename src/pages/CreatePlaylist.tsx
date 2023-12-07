@@ -3,6 +3,7 @@ import { PlaylistForm } from '../components/generate playlist/PlaylistForm';
 import { useState, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { UserContext } from '../context/user-context';
+import Header from '../components/Header';
 
 export default function CreatePlaylistPage() {
   const { user } = useContext(UserContext);
@@ -19,9 +20,7 @@ export default function CreatePlaylistPage() {
 
   return (
     <div>
-      <header>
-        <h1>Create Your Playlist</h1>
-      </header>
+      <Header title="Create Your Playlist" />
       <div>
         <ModalWindow modal={modal} closeModal={closeModal} />
         <PlaylistForm openModal={openModal} />

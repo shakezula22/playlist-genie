@@ -63,7 +63,7 @@ export default function Submit(props: SpotifyObject) {
   return (
     <div className="card">
       <ul className="tracks">
-        {tracks && tracks.map(item => <SongItem {...item} />)}
+        {tracks && tracks.map(item => <SongItem key={item.id} {...item} />)}
       </ul>
       <Link className="button" to="/createplaylist">
         Create New Playlist

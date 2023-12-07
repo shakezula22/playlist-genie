@@ -1,5 +1,4 @@
 import { TextInput, Textarea, Checkbox } from '@mantine/core';
-import React, { useState } from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../../context/user-context';
 import { PlaylistBody, PlaylistFormProps } from '../../types';
@@ -8,7 +7,7 @@ import { PlaylistContext } from '../../context/playlist-context';
 export function PlaylistForm({ openModal }: PlaylistFormProps) {
   const { user, token, getRefreshedTokens } = useContext(UserContext);
   const { setPlaylist, tracks, playlist } = useContext(PlaylistContext);
-  const [needAuth, setNeedAuth] = useState(false);
+  let needAuth = false;
 
   const trackUris = tracks?.flatMap(item => item.uri);
 
@@ -38,12 +37,12 @@ export function PlaylistForm({ openModal }: PlaylistFormProps) {
 
     const data = await res.json();
     if (res.status === 401) {
-      setNeedAuth(true);
+      needAuth = true;
       return;
     } else {
       fillPlaylist(data.id);
       openModal();
-      setNeedAuth(false);
+      needAuth = false;
     }
   };
 
@@ -85,6 +84,7 @@ export function PlaylistForm({ openModal }: PlaylistFormProps) {
           }
         />
       </div>
+
       <button type="submit" className="button">
         Create
       </button>

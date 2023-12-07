@@ -10,7 +10,7 @@ export default function SongItem(props: trackObject) {
     removeSong(props.id);
   };
   return (
-    <li key={props.id} className="tracks__item">
+    <li className="tracks__item">
       <div className="tracks__title">{props.name}</div>
       <div className="tracks__btn-container">
         <button className="tracks__btn" onClick={handleClick}>
