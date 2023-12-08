@@ -51,6 +51,8 @@ export default function AuthCallbackPage() {
 
     const data = await res.json();
 
+    console.log(codeVerifier);
+
     persistToken(data.access_token);
     persistRefresh(data.refresh_token);
     await getProfile(data.access_token);

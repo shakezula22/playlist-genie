@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const BASE_URL = 'https://playlist-genie-one.vercel.app';
-export const SPOTIFY_CLIENT_ID = '08547b47e3a9425992a780af5276909b';
+export const BASE_URL = import.meta.env.VITE_BASE_URL;
+export const SPOTIFY_CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 
 export type User = {
   id: string;
