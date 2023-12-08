@@ -1,5 +1,4 @@
-import { BASE_URL } from '../types';
-
+import { SPOTIFY_CLIENT_ID, BASE_URL } from '../types';
 export default function LogInPage() {
   const redirectUri = `${BASE_URL}/callback`;
   const scopes =
@@ -47,7 +46,7 @@ export default function LogInPage() {
 
       let args = new URLSearchParams({
         response_type: 'code',
-        client_id: import.meta.env.VITE_SPOTIFY_CLIENT_ID,
+        client_id: SPOTIFY_CLIENT_ID,
         scope: scopes,
         redirect_uri: redirectUri,
         state: state,
