@@ -40,6 +40,8 @@ export default function AuthCallbackPage() {
   };
 
   const handleLogin = async () => {
+    console.log(codeVerifier + 'callback');
+
     const res = await fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
       headers: {
@@ -50,8 +52,6 @@ export default function AuthCallbackPage() {
     if (!res.ok) return;
 
     const data = await res.json();
-
-    console.log(codeVerifier);
 
     persistToken(data.access_token);
     persistRefresh(data.refresh_token);

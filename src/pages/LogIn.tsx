@@ -38,7 +38,7 @@ export default function LogInPage() {
   }
   const handleClick = () => {
     let codeVerifier = generateRandomString(128);
-
+    console.log(codeVerifier + 'login');
     generateCodeChallenge(codeVerifier).then(codeChallenge => {
       let state = generateRandomString(16);
 
