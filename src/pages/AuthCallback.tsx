@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/user-context';
+import { BASE_URL, SPOTIFY_CLIENT_ID } from '../types';
 
 export default function AuthCallbackPage() {
   const [searchParams] = useSearchParams();
@@ -15,8 +16,8 @@ export default function AuthCallbackPage() {
   const body = new URLSearchParams({
     grant_type: 'authorization_code',
     code: code,
-    redirect_uri: `${import.meta.env.VITE_BASE_URL}/callback`,
-    client_id: '08547b47e3a9425992a780af5276909b',
+    redirect_uri: `${BASE_URL}/callback`,
+    client_id: SPOTIFY_CLIENT_ID,
     code_verifier: codeVerifier,
   });
 
